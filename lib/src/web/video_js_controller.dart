@@ -1,5 +1,6 @@
+// import 'dart:math';
 import 'package:universal_html/html.dart' as html;
-
+import 'dart:ui' as ui;
 import 'package:video_js/src/models/videoJs_options.dart';
 import 'package:video_js/src/web/video_results.dart';
 import 'package:video_js/src/web/video_js_scripts.dart';
@@ -48,6 +49,52 @@ class VideoJsController {
     }
     html.querySelector('body')!.children.add(scriptElement);
     VideoJsResults().listenToValueFromJs(playerId, 'getVolume', onVolumeRecive);
+  }
+
+  ///initialize the player
+  void init() {
+    final elementId = createElementId(7);
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
+      final html.Element htmlElement = html.DivElement()
+        ..id = "divId"
+        ..style.width = '100%'
+        ..style.height = '100%'
+        ..children = [
+          html.VideoElement()
+            ..id = playerId
+            ..style.minHeight = "100%"
+            ..style.minHeight = "100%"
+            ..style.width = "100%"
+            ..style.height = "auto"
+            ..className = "video-js vjs-default-skin",
+          html.ScriptElement()
+            ..innerHtml = VideoJsScripts()
+                .videojsCode(playerId, getVideoJsOptions(videoJsOptions))
+        ];
+      return htmlElement;
+    });
+  }
+
+  // /// set source of video player
+  // void setSource() {
+  //   html.ScriptElement()
+  //     ..innerHtml = VideoJsScripts()
+  //         .videojsCode(playerId, getVideoJsOptions(videoJsOptions));
+  // }
+
+  String createElementId(int length) {
+    /// To generate random string for HtmlElementView ID
+    // var r = Random();
+    // const _chars =
+    //     'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    // return List.generate(length, (index) => _chars[r.nextInt(_chars.length)])
+    //     .join();
+    return 'fdRDfg3';
+  }
+
+  Map<String, dynamic> getVideoJsOptions(VideoJsOptions? videoJsOptions) {
+    return videoJsOptions != null ? videoJsOptions.toJson() : {};
   }
 
   /// set volume to video player

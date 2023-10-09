@@ -36,8 +36,11 @@ class VideoJsScripts {
   //   '$playerId'.isDisposed();""";
 
   String setSRCCode(String playerId, String src, String type) => """
-    var player = videojs('$playerId');
-    player.src({type: '$type', src: '$src'});""";
+    var player = videojs.getPlayer('$playerId');
+    player.src({type: '$type', src: '$src'});
+    player.ready(function() {
+    player.play();
+    });""";
 
   //Array of Source Objects: To provide multiple versions of the source so that it can be played
   //using HTML5 across browsers you can use an array of source objects. Video.js will detect which
