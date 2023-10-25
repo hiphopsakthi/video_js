@@ -61,6 +61,9 @@ class VideoJsOptions {
   /// Setting this option to true will enable the live ui on web.
   final bool? isLive;
 
+  /// Setting this option to true will disable Picture-in-Picture mode on supported devices.
+  final bool? disablePictureInPicture;
+
   /// If set to true, then the no compatible source error will not be triggered immediately and instead will
   /// occur on the first user interaction. This is useful for Google's "mobile friendly" test tool, which can't
   /// play video but where you might not want to see an error displayed.
@@ -74,6 +77,7 @@ class VideoJsOptions {
       this.aspectRatio,
       this.fluid,
       this.language,
+      this.disablePictureInPicture,
       this.playsinline,
       this.liveui,
       this.isLive,
@@ -95,6 +99,8 @@ class VideoJsOptions {
     if (this.language != null) data['language'] = "\"${this.language}\"";
     if (this.liveui != null) data['liveui'] = this.liveui;
     if (this.isLive != null) data['isLive'] = this.isLive;
+    if (this.disablePictureInPicture != null)
+      data['disablePictureInPicture'] = this.disablePictureInPicture;
     if (this.notSupportedMessage != null)
       data['notSupportedMessage'] = "\"${this.notSupportedMessage}\"";
     if (this.playbackRates != null) data['playbackRates'] = this.playbackRates;
