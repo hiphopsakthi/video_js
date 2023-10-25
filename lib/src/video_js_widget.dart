@@ -21,7 +21,7 @@ class VideoJsWidget extends StatelessWidget {
       height: height,
       child: kIsWeb
           ? HtmlElementView(
-              viewType: 'fdRDfg3',
+              viewType: 'video-root',
             )
           : Center(
               child: Text("Video_js plugin just supported on web"),

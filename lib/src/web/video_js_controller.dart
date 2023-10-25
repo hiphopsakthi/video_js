@@ -1,4 +1,3 @@
-// import 'dart:math';
 import 'package:universal_html/html.dart' as html;
 import 'dart:ui' as ui;
 import 'package:video_js/src/models/videoJs_options.dart';
@@ -53,9 +52,8 @@ class VideoJsController {
 
   ///initialize the player
   void init() {
-    final elementId = createElementId(7);
     // ignore: undefined_prefixed_name
-    ui.platformViewRegistry.registerViewFactory(elementId, (int id) {
+    ui.platformViewRegistry.registerViewFactory('video-root', (int id) {
       final html.Element htmlElement = html.DivElement()
         ..id = "divId"
         ..style.width = '100%'
@@ -74,23 +72,6 @@ class VideoJsController {
         ];
       return htmlElement;
     });
-  }
-
-  // /// set source of video player
-  // void setSource() {
-  //   html.ScriptElement()
-  //     ..innerHtml = VideoJsScripts()
-  //         .videojsCode(playerId, getVideoJsOptions(videoJsOptions));
-  // }
-
-  String createElementId(int length) {
-    /// To generate random string for HtmlElementView ID
-    // var r = Random();
-    // const _chars =
-    //     'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
-    // return List.generate(length, (index) => _chars[r.nextInt(_chars.length)])
-    //     .join();
-    return 'fdRDfg3';
   }
 
   Map<String, dynamic> getVideoJsOptions(VideoJsOptions? videoJsOptions) {
