@@ -6,4 +6,7 @@ class VideoJsController {
 
   VideoJsController(this.playerId, {this.videoJsOptions});
   play() {}
+  init() {}
+  isPaused(Function(String) onPauseStatus) {}
+  durationTime(Function(String) onDurationTime) {}
 }

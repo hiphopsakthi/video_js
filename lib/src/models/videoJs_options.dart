@@ -55,6 +55,12 @@ class VideoJsOptions {
   /// <source> elements. This should be an array of objects with the src and type properties.
   final List<Source>? sources;
 
+  /// Setting this option to true will enable inline playback on web.
+  final bool? playsinline;
+
+  /// Setting this option to true will enable the live ui on web.
+  final bool? isLive;
+
   /// If set to true, then the no compatible source error will not be triggered immediately and instead will
   /// occur on the first user interaction. This is useful for Google's "mobile friendly" test tool, which can't
   /// play video but where you might not want to see an error displayed.
@@ -68,7 +74,9 @@ class VideoJsOptions {
       this.aspectRatio,
       this.fluid,
       this.language,
+      this.playsinline,
       this.liveui,
+      this.isLive,
       this.notSupportedMessage,
       this.playbackRates,
       this.preferFullWindow,
@@ -86,6 +94,7 @@ class VideoJsOptions {
       data['aspectRatio'] = "\"${this.aspectRatio}\"";
     if (this.language != null) data['language'] = "\"${this.language}\"";
     if (this.liveui != null) data['liveui'] = this.liveui;
+    if (this.isLive != null) data['isLive'] = this.isLive;
     if (this.notSupportedMessage != null)
       data['notSupportedMessage'] = "\"${this.notSupportedMessage}\"";
     if (this.playbackRates != null) data['playbackRates'] = this.playbackRates;
@@ -96,6 +105,7 @@ class VideoJsOptions {
       data['suppressNotSupportedError'] = this.suppressNotSupportedError;
     if (this.sources != null)
       data['sources'] = this.sources!.map((v) => v.toJson()).toList();
+    if (this.playsinline != null) data['playsinline'] = this.playsinline;
     return data;
   }
 }

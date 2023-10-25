@@ -1,6 +1,15 @@
 class VideoJsScripts {
   String videojsCode(String playerId, Map<String, dynamic>? options) => """
     var player = videojs('$playerId', ${options},function() {
+    var video = document.getElementById('${playerId}_html5_api');
+    if(${options!['isLive']}){
+    video.addEventListener('pause', function() {
+    player.play();
+    });
+    setInterval(function (){
+      player.paused()? player.play(): null;
+    }, 150000);
+    }
     callBackToDartSide('$playerId', 'onReady' , 'true');
     });""";
 
